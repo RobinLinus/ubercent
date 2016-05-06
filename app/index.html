@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ubercent</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#4285f4">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#4285f4">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Ubercent">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#4285f4">
+    <meta name="apple-mobile-web-app-title" content="ubercent">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <!--begincss-->
+    <link rel="stylesheet" type="text/css" href="pages/styles.css">
+    <link rel="stylesheet" type="text/css" href="pages/home/home.css">
+    <link rel="stylesheet" type="text/css" href="pages/export/export.css">
+    <link rel="stylesheet" type="text/css" href="pages/receive/receive.css">
+    <link rel="stylesheet" type="text/css" href="pages/scan/scan.css">
+    <link rel="stylesheet" type="text/css" href="pages/send/send.css">
+    <!--endcss-->
+    <meta name="description" content="Ubercent is the easiest way to transfer money. Private, Secure and Open Source. No Setup, No Signup.">
+    <meta property="og:image" content="https://ubercent.firebaseapp.com/images/touch/icon-512x512.png" />
+    <meta property="og:url" content="https://ubercent.firebaseapp.com/" />
+    <meta name="twitter:image" content="https://ubercent.firebaseapp.com/images/touch/icon-512x512.png" />
+    <meta name="twitter:author" content="@RobinLinus" />
+    <meta property="og:type" content="article" />
+    <meta property="og:author" content="https://facebook.com/RobinLinus" />
+    <meta property="fb:pages" content="451189218422617" />
+    <meta property="fb:profile_id" content="451189218422617" />
+</head>
+
+<body>
+    <div class="body">
+        <div class="page home">
+            <header>
+                <div class="balance">
+                    <h1>
+                        <span id="currency">$</span>&nbsp;<span id="balance">___</span>
+                    </h1>
+                    <h3>Wallet Balance</h3>
+                </div>
+                <div class="flex"></div>
+                <img id="identicon" class="scale-up">
+            </header>
+            <div class="content">
+                <a href="#scan" class="item">Send</a>
+                <a href="#receive" class="item">Receive</a>
+                <a href="#export" class="item">Export</a>
+            </div>
+        </div>
+        <div class="page export slide-from-right">
+            <header>
+                <a href="#">
+                    <img data-src="../images/back.svg">
+                </a>
+                Export Code
+            </header>
+            <div class="content">
+                <a download="Ubercoin Wallet" id="dlLink">
+                    <canvas id="canvas" width="300" height="485"></canvas>
+                </a>
+            </div>
+        </div>
+        <div class="page receive slide-from-right">
+            <header>
+                <a href="#">
+                    <img data-src="../images/back.svg">
+                </a>
+                Receive Money
+            </header>
+            <div class="content">
+                <img id="identicon">
+                <div class="text">My Address:</div>
+                <img id="qrCode" class="scale-up">
+                <div class="sharing">
+                    <a id="whatsapp" data-action="share/whatsapp/share">
+                        <img data-src="../images/whatsapp.svg">
+                    </a>
+                    <a id="email">
+                        <img data-src="../images/mail.png">
+                    </a>
+                    <a id="copy">
+                        <img data-src="../images/copy.png">
+                    </a>
+                    <a id="print" href="javascript:window.print()">
+                        <img data-src="../images/print.svg">
+                    </a>
+                </div>
+            </div>
+            <div id="publicKey"></div>
+        </div>
+        <div class="page scan slide-from-right">
+            <header>
+                <a href="#"><img data-src="../images/back.svg"></a>
+                Scan Code</header>
+            <div class="content">
+                <div id="outdiv"></div>
+                <canvas id="qr-canvas" width="320" height="600"></canvas>
+            </div>
+        </div>
+        <div class="page send slide-from-right">
+            <header>
+                <a href="#"><img data-src="../images/back.svg"></a>
+                <div class="flex"></div>
+                <span>
+            Balance: $<span id="balance">_.__</span>
+                </span>
+            </header>
+            </header>
+            <div class="content">
+                <h2>Send Money to:</h2>
+                <img id="identicon" height="64" width="64" class="scale-up">
+                <div class="input">
+                    <input id="amount" type="number" placeholder="0.00" min="0.01" max="999999" step="0.01" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                </div>
+                <button onclick="send()">Send</button>
+            </div>
+        </div>
+        <div id="loading" hidden>
+            <div data-loader="ball-fade"></div>
+        </div>
+    </div>
+    <!--beginjs-->
+    <script src="libs/extern/bitcoinjs.min.js"></script>
+    <script src="libs/extern/identicon.js"></script>
+    <script src="libs/extern/libqrcode.js"></script>
+    <script src="libs/extern/qr.js"></script>
+    <script src="libs/intern/slim-query.js"></script>
+    <script src="libs/intern/exchange.js"></script>
+    <script src="libs/intern/account.js"></script>
+    <script src="pages/home/home.js"></script>
+    <script src="pages/export/export.js"></script>
+    <script src="pages/receive/receive.js"></script>
+    <script src="pages/scan/file-input.js"></script>
+    <script src="libs/intern/image-resizer.js"></script>
+    <script src="pages/scan/scan.js"></script>
+    <script src="pages/send/wallet.js"></script>
+    <script src="pages/send/send.js"></script>
+    <script src="pages/app.js"></script>
+    <script src="libs/intern/router.js"></script>
+    <script src="libs/intern/deferred-images.js"></script>
+    <!--endjs-->
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+rm -rf dist
+mkdir dist
+uglifyjs `find app -name '*.js'` -o dist/scripts.min.js --compress --mangle
+cat `find app -name '*.css'` | cleancss -o dist/styles.min.css
+cp -r app/images dist/images
+cp app/index.html dist/index.html
+cp app/manifest.json dist/manifest.json
+perl -i -p0e 's/<!--begincss.*?endcss-->/<link rel="stylesheet" type="text\/css" href="styles.min.css">/s' dist/index.html
+perl -i -p0e 's/<!--beginjs.*?endjs-->/<script src="scripts.min.js" async><\/script>/s' dist/index.html
+firebase deploy

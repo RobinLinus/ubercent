@@ -1,0 +1,38 @@
+.receive #publicKey {
+    text-align: center;
+    padding-bottom: 4px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+}
+
+.receive .sharing a {
+    text-decoration: none;
+    margin: 16px 8px;
+    display: inline-block;
+}
+
+.receive .sharing img {
+    width: 32px;
+    height: 32px;
+}
+
+.receive #email,
+.receive #copy,
+.receive #print {
+    opacity: 0.72;
+}
+
+#qrCode{
+    cursor: none;
+}
+
+@media all and (max-height: 500px) {
+    .receive #identicon {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        height: 48px;
+        width: 48px; 
+        border-radius:0; 
+    }
+}

@@ -1,0 +1,85 @@
+.home header {
+    height: 192px;
+    padding: 0 64px;
+    cursor: pointer;
+}
+
+.home header .balance {
+    background: #4285f4;
+    color: white;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.home h1 {
+    font-size: 45px;
+    font-weight: 300;
+    letter-spacing: -.018em;
+    line-height: 0;
+    margin-bottom: 22px;
+}
+
+.home h3 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 0;
+    /*margin: 16px 0;*/
+}
+
+.home .content {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.home .item {
+    padding: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 24px;
+    outline: none;
+    background: white;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.9);
+    text-decoration: none;
+}
+
+.home #publicKey {
+    text-align: center;
+}
+
+.home #identicon{
+    width: 72px;
+    height: 72px;
+}
+
+@media all and (max-width: 440px) {
+    .home header {
+        padding: 0 24px;
+    }
+}
+
+@media all and (max-height: 520px) {
+    .home header {
+        height: 160px;
+    }
+}

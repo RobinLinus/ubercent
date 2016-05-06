@@ -1,0 +1,2 @@
+cd app
+sudo python ../dev-server/simple-https-server.py

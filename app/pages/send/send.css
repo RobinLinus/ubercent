@@ -1,0 +1,15 @@
+.send h2 {
+    margin: 4px;
+    margin-top: -56px;
+}
+
+.send .input {
+    position: relative;
+}
+
+.send .input::after {
+    content: "$";
+    position: absolute;
+    top: 26px;
+    left: 30px;
+}
