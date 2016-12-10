@@ -8,24 +8,23 @@ Desired properties of digital cash to be practical:
 - easily convertable into "online" money (Ethereum | SEPA, Paypal, ... )
 - dezentralized cash creation  
 - open source
-
+- works on everyday hardware
 
 
 ## Ideas 
 
-All approaches assume that there is given a crypto-currency to back the cash's value 1:1.
+All ideas presented here assume that there is given a crypto-currency (such as bitcoin, litecoin, ethereum,... ) to back the cash's value 1:1.
 
 In the following _XCC_ means "any such crypto-currency". 
 
-The security model of every cash design assumes that XCC is secure, stable and trustworthy.
+Every cash design is designed to hold a secret that allows the owner of the cash to transfer the cash's value into his XCC wallet (where it can be considered to be secure). 
 
-Every cash design is designed to hold a secret that allows the owner of the cash to transfer the cash's value into his crypto-currency wallet (where it can be considered to be secure). 
-
-In the following to _redeem_ cash means "neutralize the cash by transfering it's value to receiver's XCC wallet." 
+In the following to _redeem_ cash means "neutralize the cash by transfering it's value to receiver's XCC wallet." (via internet connection)
 
 ### General considerations regarding the security model
 Attack surface 
-- Attacker copies the secret, spends the cash and redeems it before the receiver redeems it.
+- Attacker reads and copies the secret, spends the cash and redeems it before the receiver redeems it.
+- The creator of the cash knows the secret.
 
 Assumptions 
 - for offline transactions the cash can't be 100% copy-prove.
@@ -33,17 +32,20 @@ Assumptions
 
 ### One-time self-printed cash 
 - everybody with internet connection, app and printer can print his's own cash.
-- cash receiver scans the bill and redeems it immediatly. 
+- cash receiver scans the cash and redeems it immediatly. 
 - if the amount appears in receiver's XCC wallet, the transaction was valid and secure. 
 
-### RFID-based one-time cash
+### NFC/RFID-based one-time cash
 - same system as self-printed, but with reusable RFID tokens
+  - everyone can rewrite public key and secret 
 
 
-### zero-knowledge proof with RF-powered computation 
-
-
-
+### interactive proof with RF-powered computation 
+- the cash never reveals it's secret to anybody
+- but it can prove to anybody that it knows the secret
+  - the verifier encrypts a random string with the cash's public key and sends the encrypted text to the cash. If the cash can tell the plain text, it probably knows the private key. (zero-knowledge proof) 
+  
+  
 ## One-time self-printed cash
 Simple App to print out bills that are actually private keys of an XCC wallet.
 Those bills are charged by transfering XCC to the wallet it represents.
@@ -70,10 +72,10 @@ Cons:
 ### Improvements 
 - cash could be encrypted such that you need a password to spend it.
 - cash could be signed by an trustworty authority. 
-  - this slightly increases the trustworthyness of offline transactions because you can check offline if the was cash was ever charged (but not if it was copied or spent already). 
+  - this slightly increases the trustworthyness of offline transactions because you can check offline if the cash was ever validly charged (but not if it was copied or spent already). 
 - it could be (mechanically) folded and glued together, such that the secret is sealed. 
   - this slightly increases the trustworthyness of offline transactions because if it is signed and sealed it is a little harder to copy it. 
-  - This assumes the cash was created and signed by an authority that is trusted by the receiver.
+  - This assumes the cash was created and signed by an authority that is trusted by the receiver (bc the creator of the cash knows the secret).
 
 ## Candidates for XCC
 
@@ -89,7 +91,7 @@ Cons:
 
 
 Nice to have 
- - a cash system that is independent of a specific blockchain currency. 
+ - a cash design that is independent of a specific blockchain currency. 
 
 ## Candidates 
 - Ethereum 
