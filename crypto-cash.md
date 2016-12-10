@@ -12,7 +12,6 @@ Desired properties of digital cash to be practical:
 
 
 ## Ideas 
-The following 
 
 All approaches assume that there is given a crypto-currency to back the cash's value 1:1.
 
