@@ -87,12 +87,13 @@ Cons:
   - fast and scalabale transactions (validation < 20s)
   - stable community
   - decentralized mining (ASIC resistant)
-  - good ecological foodprint
+  - good ecological footprint
 
 
 Nice to have 
  - a cash design that is independent of a specific blockchain currency. 
 
 ## Candidates 
+- Bitcoin
 - Ethereum 
 - LiteCoin
